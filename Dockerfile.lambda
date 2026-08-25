@@ -1,0 +1,31 @@
+# AWS Lambda Python 3.11 base image
+FROM public.ecr.aws/lambda/python:3.11
+
+# XGBoost needs libgomp
+RUN yum install -y libgomp && \
+    yum clean all
+
+# Copy Lambda-specific requirements
+COPY requirements.lambda.txt ${LAMBDA_TASK_ROOT}/
+
+# Install dependencies
+RUN python -m pip install --upgrade pip && \
+    pip install --no-cache-dir \
+    -r ${LAMBDA_TASK_ROOT}/requirements.lambda.txt \
+    --target ${LAMBDA_TASK_ROOT}
+
+# Copy project code
+COPY src/ ${LAMBDA_TASK_ROOT}/src/
+COPY api/ ${LAMBDA_TASK_ROOT}/api/
+COPY model/ ${LAMBDA_TASK_ROOT}/model/
+
+# Allow app.py to import preprocess.py
+ENV PYTHONPATH="${LAMBDA_TASK_ROOT}/src:${LAMBDA_TASK_ROOT}"
+
+# IMPORTANT:
+# app.py contains:
+#
+#     handler = Mangum(app)
+#
+# so Lambda must call api.app.handler
+CMD ["api.app.handler"]

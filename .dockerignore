@@ -1,0 +1,40 @@
+# MLflow experiment data — not needed inside the container
+mlruns/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Jupyter notebooks and checkpoints
+*.ipynb
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+.env
+
+# Git
+.git/
+.gitignore
+
+# Test files
+tests/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+
+
+reports/
+mlruns/
+__pycache__/
+*.pyc
+.env
+
+# Data — model is bundled, raw CSV is not needed at serve time
+data/
