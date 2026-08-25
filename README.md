@@ -1,6 +1,6 @@
 # Telco Churn MLOps Pipeline
 
-![CI/CD](https://github.com/Orko-Dutta-13/telco-churn-mlops/actions/workflows/deploy.yml/badge.svg)
+![CI/CD](https://github.com/Orko-Dutta-13/telco-churn-mlops/actions/workflows/deploy.yml/badge.svg?branch=main)
 
 > An end-to-end MLOps system that takes a churn prediction model from experiment to production — with a live REST API, automated CI/CD, data drift monitoring, and full experiment tracking.
 
